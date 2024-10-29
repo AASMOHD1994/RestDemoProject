@@ -60,6 +60,16 @@ public class UserEndPoint {
 		
 	}
 	
+	public static Response getUser2()
+	{
+		Response res=given()
+		.when()
+		.get(Routes.GET_URL2);
+		
+		return res;
+		
+	}
+	
 	
 
 

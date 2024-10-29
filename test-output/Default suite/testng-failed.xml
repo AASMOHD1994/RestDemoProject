@@ -5,7 +5,7 @@
     <classes>
       <class name="api.tests.TestUser">
         <methods>
-          <include name="testGetUser3"/>
+          <include name="testGetUser4"/>
           <include name="setData"/>
         </methods>
       </class> <!-- api.tests.TestUser -->

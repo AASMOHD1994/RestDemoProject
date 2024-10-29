@@ -1,5 +1,7 @@
 package api.tests;
 
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
@@ -7,6 +9,7 @@ import org.testng.annotations.Test;
 
 import api.endpoints.UserEndPoint;
 import api.payloads.User;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class TestUser {
@@ -61,8 +64,12 @@ public class TestUser {
 	{
 		Response res=UserEndPoint.getUser(user.getUsername());
 		Assert.assertEquals(res.getStatusCode(), 200);
+		
+	//	JsonPath jp = new JsonPath(res.asString());
+		
+		
 		System.out.println(res.jsonPath().get().toString());
-		System.out.println(res.jsonPath().get("id").toString());
+		System.out.println(res.jsonPath().getString("id"));
 		System.out.println(res.jsonPath().get("firstName").toString());
 		System.out.println(res.jsonPath().get("lastName").toString());
 		
@@ -84,6 +91,23 @@ public class TestUser {
 		Response res=UserEndPoint.getUser(user.getUsername());
 		Assert.assertEquals(res.getStatusCode(), 200);
 		System.out.println(res.jsonPath().get().toString());
+		
+	}
+	
+	@Test(priority=7)
+	public void testGetUser4()
+	{
+		Response res=UserEndPoint.getUser2();
+		JsonPath p=res.jsonPath();
+		int g=p.get("data.size()");
+
+		for(int i=0;i<g;i++)
+		{ 
+			List n=p.getList("data");
+			System.out.println(n);
+			
+		}
+	
 		
 	}
 
